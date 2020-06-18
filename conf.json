@@ -1,0 +1,29 @@
+{
+
+    "server": {
+        "addr": "0.0.0.0",
+        "port": 8888
+    },
+
+    "storage": {
+        "sql":{
+            "dbs": {
+                "activity_dsn":"pk_web:Udvyw93%dc9i3@tcp(aws-dev-db-v57.ck7gakvwrblj.ap-east-1.rds.amazonaws.com:3306)/pk_activity_sys?charset=utf8&parseTime=True&loc=Local"
+            }
+        },
+        "mgo":{
+            "uri": "",
+            "database": ""
+        },
+        "rds":{
+            "addr": "110.184.163.218:6379",
+            "password": ""
+        }
+    },
+
+    "nats": {
+        "client": "activities",
+        "cluster": "nats-streaming",
+        "urls": "nats://127.0.0.1:14222"
+    }
+}
