@@ -1,9 +1,6 @@
 package main
 
-import (
-	_ "activities/library/clients/nats"
-	"log"
-)
+import "log"
 
 func main() {
 	log.Println("successful")

@@ -43,29 +43,30 @@ func init() {
 
 	// 载入Redis
 	if config.GetStorageConf().Rds.Addr != "" {
-		// 统计
-		storage.rds[0] = redis.NewClient(&redis.Options{
-			Addr:     config.GetStorageConf().Rds.Addr,
-			Password: config.GetStorageConf().Rds.Password,
-			DB:       common.DailyStatistics.Int(),
-		})
 		// 道具
-		storage.rds[1] = redis.NewClient(&redis.Options{
+		storage.rds[common.ItemRecordStore] = redis.NewClient(&redis.Options{
 			Addr:     config.GetStorageConf().Rds.Addr,
 			Password: config.GetStorageConf().Rds.Password,
 			DB:       common.ItemRecordStore.Int(),
 		})
 		// 每手
-		storage.rds[2] = redis.NewClient(&redis.Options{
+		storage.rds[common.HandOverRecordStore] = redis.NewClient(&redis.Options{
 			Addr:     config.GetStorageConf().Rds.Addr,
 			Password: config.GetStorageConf().Rds.Password,
 			DB:       common.HandOverRecordStore.Int(),
 		})
 		// 保险
-		storage.rds[3] = redis.NewClient(&redis.Options{
+		storage.rds[common.InsuranceRecordStore] = redis.NewClient(&redis.Options{
 			Addr:     config.GetStorageConf().Rds.Addr,
 			Password: config.GetStorageConf().Rds.Password,
 			DB:       common.InsuranceRecordStore.Int(),
+		})
+
+		// 统计
+		storage.rds[common.DailyStatistics] = redis.NewClient(&redis.Options{
+			Addr:     config.GetStorageConf().Rds.Addr,
+			Password: config.GetStorageConf().Rds.Password,
+			DB:       common.DailyStatistics.Int(),
 		})
 	}
 

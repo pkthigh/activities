@@ -24,5 +24,5 @@ require (
 	go.etcd.io/etcd v3.3.13+incompatible
 	google.golang.org/appengine v1.6.1
 	gopkg.in/redis.v5 v5.2.9
-	k8s.io/apiserver v0.18.5 // indirect
+	k8s.io/apiextensions-apiserver v0.18.5 // indirect
 )

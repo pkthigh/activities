@@ -61,7 +61,6 @@ func init() {
 	// 每日12点定时任务
 	go func() {
 		for {
-			// TODO: 每日统计并清空当日
 			nowtime := time.Now()
 			client.msgs <- &stan.Msg{pb.MsgProto{Subject: "DailyStatistics", Data: []byte(nowtime.Format("2006-01-02"))}, nil}
 			next := nowtime.Add(time.Hour * 24)
