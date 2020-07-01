@@ -68,6 +68,7 @@ func init() {
 			next = time.Date(next.Year(), next.Month(), next.Day(), 0, 0, 0, 0, next.Location())
 			t := time.NewTimer(next.Sub(nowtime))
 			<-t.C
+
 		}
 	}()
 }
@@ -132,8 +133,9 @@ func (nats *Nats) DailyStatistics(msg *stan.Msg) {
 
 	dailyStore, _ := storage.GetRdsDB(common.DailyStatistics)
 	if err := dailyStore.Set(nats.time, statistics.JSONFormatString(), time.Hour*24*30).Err(); err != nil {
-		logger.ErrorF("DailyStatistics redis set error: %s", statistics.JSONFormatString())
+		logger.ErrorF("DailyStatistics redis set Time: %s Data: %s Error: %s", nats.time, statistics.JSONFormatString(), err)
+	} else {
+		logger.InfoF("DailyStatistics Time: %v Data:%v", nats.time, statistics.JSONFormatString())
 	}
-	logger.InfoF("DailyStatistics Time: %v Data:%v", nats.time, statistics.JSONFormatString())
 	nats.time = string(msg.Data[:])
 }
