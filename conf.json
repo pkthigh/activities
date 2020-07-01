@@ -16,7 +16,7 @@
             "database": ""
         },
         "rds":{
-            "addr": "110.184.163.218:6379",
+            "addr": "heyu7.com:6379",
             "password": ""
         }
     },

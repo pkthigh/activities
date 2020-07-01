@@ -43,11 +43,11 @@ func init() {
 
 	// 载入Redis
 	if config.GetStorageConf().Rds.Addr != "" {
-		// 默认
+		// 统计
 		storage.rds[0] = redis.NewClient(&redis.Options{
 			Addr:     config.GetStorageConf().Rds.Addr,
 			Password: config.GetStorageConf().Rds.Password,
-			DB:       common.Default.Int(),
+			DB:       common.DailyStatistics.Int(),
 		})
 		// 道具
 		storage.rds[1] = redis.NewClient(&redis.Options{

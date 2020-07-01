@@ -4,8 +4,8 @@ package common
 type REDIS int
 
 const (
-	// Default 默认
-	Default REDIS = iota
+	// DailyStatistics 每日统计
+	DailyStatistics REDIS = iota
 	// ItemRecordStore 道具记录存储
 	ItemRecordStore
 	// HandOverRecordStore 每手记录存储
