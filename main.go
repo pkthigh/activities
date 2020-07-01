@@ -1,18 +1,12 @@
 package main
 
 import (
-	"activities/common"
-	"activities/library/storage"
-	"fmt"
+	_ "activities/library/clients/nats"
+	"log"
 )
 
 func main() {
-	itemStore, _ := storage.GetRdsDB(common.ItemRecordStore)
-	// handStore, _ := storage.GetRdsDB(common.HandOverRecordStore)
-	// insuranceStore, _ := storage.GetRdsDB(common.InsuranceRecordStore)
-	cmd := itemStore.Keys("*")
-	fmt.Printf("ids: %+v", cmd.Val())
-	// log.Println("successful")
-	// signalChan := make(chan int)
-	// <-signalChan
+	log.Println("successful")
+	signalChan := make(chan int)
+	<-signalChan
 }
