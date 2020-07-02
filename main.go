@@ -1,12 +1,14 @@
 package main
 
 import (
+	"activities/gateway/router"
 	_ "activities/library/clients/nats"
-	"log"
+	"activities/library/config"
+	_ "activities/service"
+	"fmt"
 )
 
 func main() {
-	log.Println("successful")
-	signalChan := make(chan int)
-	<-signalChan
+	conf := config.GetServerConf()
+	router.NewRouter().Run(fmt.Sprintf("%v:%v", conf.Addr, conf.Post))
 }

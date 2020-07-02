@@ -4,6 +4,7 @@ import (
 	"activities/common"
 	"activities/library/logger"
 	"activities/library/storage"
+	"activities/service"
 	"encoding/json"
 	"strconv"
 	"time"
@@ -68,6 +69,10 @@ func HandOverRecordHandler(msg *stan.Msg) {
 				logger.ErrorF("HandOverRecordStore redis Incr %v error: %v", userid, err)
 			}
 		}
+
+		// 投递手数活动
+		service.Service.PostMsg(userid)
+
 		logger.InfoF("[手数]Subject: %v, UserID: %v", msg.Subject)
 	}
 

@@ -56,18 +56,18 @@ func init() {
 			case common.PkcHandOverNewSubject.String():
 				message.HandOverRecordHandler(msg)
 			}
+
 		}
 	}()
-	// 每日12点定时任务
+	// 每日12点定时任务(统计今日数据并清空当日数据)
 	go func() {
 		for {
 			nowtime := time.Now()
-			client.msgs <- &stan.Msg{pb.MsgProto{Subject: "DailyStatistics", Data: []byte(nowtime.Format("2006-01-02"))}, nil}
 			next := nowtime.Add(time.Hour * 24)
 			next = time.Date(next.Year(), next.Month(), next.Day(), 0, 0, 0, 0, next.Location())
 			t := time.NewTimer(next.Sub(nowtime))
 			<-t.C
-
+			client.msgs <- &stan.Msg{pb.MsgProto{Subject: "DailyStatistics", Data: []byte(nowtime.Format("2006-01-02"))}, nil}
 		}
 	}()
 }

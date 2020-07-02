@@ -11,6 +11,8 @@ const (
 	// InsuranceRecordStore 保险记录存储
 	InsuranceRecordStore REDIS = 3
 
+	// HandNumActivity 手数活动
+	HandNumActivity REDIS = 14
 	// DailyStatistics 每日统计
 	DailyStatistics REDIS = 15
 )

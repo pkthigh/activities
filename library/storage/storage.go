@@ -43,31 +43,14 @@ func init() {
 
 	// 载入Redis
 	if config.GetStorageConf().Rds.Addr != "" {
-		// 道具
-		storage.rds[common.ItemRecordStore] = redis.NewClient(&redis.Options{
-			Addr:     config.GetStorageConf().Rds.Addr,
-			Password: config.GetStorageConf().Rds.Password,
-			DB:       common.ItemRecordStore.Int(),
-		})
-		// 每手
-		storage.rds[common.HandOverRecordStore] = redis.NewClient(&redis.Options{
-			Addr:     config.GetStorageConf().Rds.Addr,
-			Password: config.GetStorageConf().Rds.Password,
-			DB:       common.HandOverRecordStore.Int(),
-		})
-		// 保险
-		storage.rds[common.InsuranceRecordStore] = redis.NewClient(&redis.Options{
-			Addr:     config.GetStorageConf().Rds.Addr,
-			Password: config.GetStorageConf().Rds.Password,
-			DB:       common.InsuranceRecordStore.Int(),
-		})
+		for i := 0; i < 15; i++ {
+			storage.rds[common.ItemRecordStore] = redis.NewClient(&redis.Options{
+				Addr:     config.GetStorageConf().Rds.Addr,
+				Password: config.GetStorageConf().Rds.Password,
+				DB:       i,
+			})
+		}
 
-		// 统计
-		storage.rds[common.DailyStatistics] = redis.NewClient(&redis.Options{
-			Addr:     config.GetStorageConf().Rds.Addr,
-			Password: config.GetStorageConf().Rds.Password,
-			DB:       common.DailyStatistics.Int(),
-		})
 	}
 
 }
