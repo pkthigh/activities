@@ -2,7 +2,7 @@ package main
 
 import (
 	"activities/gateway/router"
-	_ "activities/library/clients/nats"
+	// _ "activities/library/clients/nats"
 	"activities/library/config"
 	_ "activities/service"
 	"fmt"
@@ -10,5 +10,6 @@ import (
 
 func main() {
 	conf := config.GetServerConf()
-	router.NewRouter().Run(fmt.Sprintf("%v:%v", conf.Addr, conf.Post))
+	fmt.Printf("%+v", conf)
+	router.NewRouter().Run(fmt.Sprintf("%s:%s", conf.Addr, conf.Port))
 }
