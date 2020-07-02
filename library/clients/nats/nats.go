@@ -70,6 +70,7 @@ func init() {
 			client.msgs <- &stan.Msg{pb.MsgProto{Subject: "DailyStatistics", Data: []byte(nowtime.Format("2006-01-02"))}, nil}
 		}
 	}()
+	logger.InfoF("nats init successful")
 }
 
 // Sub 订阅

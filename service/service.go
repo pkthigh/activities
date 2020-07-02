@@ -16,6 +16,7 @@ var Service *ActivitiesService
 func init() {
 	Service = &ActivitiesService{msgs: make(chan string, 1024)}
 	go Service.listening()
+	logger.InfoF("service init successful")
 }
 
 // ActivitiesService 活动服务

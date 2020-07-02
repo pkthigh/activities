@@ -52,7 +52,7 @@ func init() {
 		}
 
 	}
-
+	logger.InfoF("storage init successful")
 }
 
 // GetSQLDB 获取Mysql

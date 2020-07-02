@@ -2,7 +2,7 @@ package main
 
 import (
 	"activities/gateway/router"
-	// _ "activities/library/clients/nats"
+	_ "activities/library/clients/nats"
 	"activities/library/config"
 	_ "activities/service"
 	"fmt"
