@@ -19,7 +19,7 @@ type Config struct {
 // ServerConfig 服务器配置
 type ServerConfig struct {
 	Addr string `json:"addr"`
-	Post int    `json:"post"`
+	Post string `json:"post"`
 }
 
 // StorageConfig 存储配置
