@@ -1,4 +1,4 @@
-# activities
+# Activities Service Doc
 
 ---
 项目结构:
@@ -31,3 +31,5 @@
   - 日志分割
 
 ---
+
+[接口文档](./gateway/README.md)

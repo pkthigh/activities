@@ -12,8 +12,8 @@ import (
 	"github.com/gin-gonic/gin/binding"
 )
 
-// Activity 活动
-func Activity(c *gin.Context) {
+// ActivityControl 活动控制
+func ActivityControl(c *gin.Context) {
 	type ParamModel struct {
 		ActivityID int64 `json:"activity_id"`
 	}
@@ -41,7 +41,7 @@ func Activity(c *gin.Context) {
 		})
 		return
 	}
-	// 新增活动待上线
+	// 新增待上线活动
 	if c.Request.Method == "POST" {
 
 		activity := &models.AcActivity{}
@@ -73,8 +73,30 @@ func Activity(c *gin.Context) {
 	if c.Request.Method == "PUT" {
 
 	}
-	// 下线活动
+	// 删除待上线活动
 	if c.Request.Method == "DELETE" {
 
+	}
+}
+
+// ActivityOffline 活动下线
+func ActivityOffline(c *gin.Context) {
+	type ParamModel struct {
+		ActivityID int64 `json:"activity_id"`
+	}
+	param := &ParamModel{}
+	if err := c.ShouldBindBodyWith(&param, binding.JSON); err != nil {
+		c.JSON(200, gateway.ResultInfo{
+			Code: errs.IllegalParameter.Int(),
+			Msg:  err.Error(),
+		})
+		return
+	}
+	if param.ActivityID == 0 {
+		c.JSON(200, gateway.ResultInfo{
+			Code: errs.MissingParameter.Int(),
+			Msg:  "参数缺失",
+		})
+		return
 	}
 }
