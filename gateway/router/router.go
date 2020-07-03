@@ -12,10 +12,15 @@ func NewRouter() *gin.Engine {
 	router.Use(Cors())
 
 	// 对外
-	// v1 := router.Group("/v1")
-	// {
+	v1 := router.Group("/v1")
+	{
+		activity := v1.Group("/activity")
+		{
 
-	// }
+			activity.GET("/participate", handler.ActivityParticipate)
+			activity.POST("/participate", handler.ActivityParticipate)
+		}
+	}
 
 	// 对内
 	backstage := router.Group("/backstage")

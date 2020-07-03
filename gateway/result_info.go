@@ -10,9 +10,10 @@ type ResultInfo struct {
 }
 
 // Successful 快捷生成
-func Successful() *ResultInfo {
+func Successful(data interface{}) *ResultInfo {
 	return &ResultInfo{
 		Code: errs.DatabaseError.Int(),
 		Msg:  "successful",
+		Data: data,
 	}
 }

@@ -7,6 +7,7 @@ import (
 	"activities/library/storage"
 	"activities/models"
 	"activities/service/framework"
+	"strconv"
 	"sync"
 )
 
@@ -157,6 +158,34 @@ func (srv *ActivitiesService) OffActivity(id int64) error {
 		return errs.DatabaseError.Error()
 	}
 	srv.activities.Delete(ty)
+	return nil
+}
+
+// IsMeetParticipationConditions 是否满足参与条件
+func (srv *ActivitiesService) IsMeetParticipationConditions(aid, uid int64) bool {
+	var result bool
+	srv.activities.Range(func(k, v interface{}) bool {
+		if v.(framework.Activity).ID() == aid {
+			result = v.(framework.Activity).Judge(strconv.FormatInt(aid, 10))
+			return false
+		}
+		return true
+	})
+	return result
+}
+
+// Participation 参与活动
+func (srv *ActivitiesService) Participation(aid, uid int64) error {
+	if !srv.IsMeetParticipationConditions(aid, uid) {
+		return errs.NotMeetParticipationConditions.Error()
+	}
+	srv.activities.Range(func(k, v interface{}) bool {
+		if v.(framework.Activity).ID() == aid {
+			v.(framework.Activity).Participate(strconv.FormatInt(aid, 10))
+			return false
+		}
+		return true
+	})
 	return nil
 }
 

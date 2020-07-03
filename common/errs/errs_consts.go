@@ -27,6 +27,10 @@ const (
 	ActivityIDNotMatch
 	// ActivityStatusNotMatch 活动状态不匹配
 	ActivityStatusNotMatch
+	// NotMeetParticipationConditions 不满足参与条件
+	NotMeetParticipationConditions
+	// ParticipationFailure 参与活动失败
+	ParticipationFailure
 )
 
 // Int to error code

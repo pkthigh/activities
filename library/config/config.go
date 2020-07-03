@@ -2,6 +2,7 @@ package config
 
 import (
 	"activities/common"
+	"fmt"
 
 	"github.com/spf13/viper"
 )
@@ -20,6 +21,14 @@ type Config struct {
 type ServerConfig struct {
 	Addr string `json:"addr"`
 	Port string `json:"port"`
+}
+
+// Address 服务器运行地址
+func (server ServerConfig) Address() string {
+	if server.Port == "" {
+		return server.Addr
+	}
+	return fmt.Sprintf("%s:%s", server.Addr, server.Port)
 }
 
 // StorageConfig 存储配置
